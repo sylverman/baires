@@ -1,0 +1,36 @@
+header #xtras #addPost, header #xtras #user {
+  cursor: pointer; }
+  header #xtras #addPost:hover, header #xtras #user:hover {
+    background: rgba(255, 255, 255, 0.1); }
+
+header {
+  background: #262728;
+  height: 60px;
+  position: fixed;
+  left: 0;
+  right: 0; }
+  header #logo {
+    float: left; }
+  header #xtras {
+    float: right; }
+    header #xtras > div {
+      float: left; }
+    header #xtras #search {
+      background: #262728;
+      border-radius: 3px;
+      border: 1px solid #5f6166;
+      height: 30px;
+      width: 200;
+      margin: 15px 20px 15px 10px;
+      border-collapse: collapse;
+      background: url("../images/bg_search.svg") center right no-repeat; }
+    header #xtras #user {
+      height: 30px;
+      margin: 15px 0; }
+      header #xtras #user #profilePicture {
+        border-radius: 3px;
+        overflow: hidden;
+        padding-right: 23px;
+        background: url("../images/bg_dropdown.svg") 38px center no-repeat; }
+
+/*# sourceMappingURL=styles.css.map */

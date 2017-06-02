@@ -1,0 +1,55 @@
+@import "_variables.scss";
+
+body {
+}
+
+%button {
+  cursor: pointer;
+  &:hover {
+    background: rgba(255,255,255,.1);
+  }
+}
+
+header {
+  background: $headerBgColor;
+  height: 60px;
+  position: fixed;
+  left: 0;
+  right: 0;
+
+  #logo {
+    float: left;
+  }
+
+  #xtras {
+    >div {
+      float: left;
+    }
+    float: right;
+    #addPost {
+      @extend %button;
+    }
+    #search {
+      background: $headerBgColor;
+      border-radius: $standarBorderRadius;
+      border: 1px solid #5f6166;
+      height: 30px;
+      width: 200;
+      margin: 15px 20px 15px 10px;
+      border-collapse: collapse;
+      background: url($imagesFolder+'bg_search.svg') center right no-repeat;
+    }
+    #user {
+      height: 30px;
+      margin: 15px 0;
+      @extend %button;
+
+      #profilePicture {
+        border-radius: $standarBorderRadius;
+        overflow: hidden;
+        padding-right: 23px;
+        background: url($imagesFolder+'bg_dropdown.svg') 38px center no-repeat;
+      }
+    }
+  }
+}
