@@ -1,4 +1,5 @@
 @import "_variables.scss";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 body {
 }
@@ -33,22 +34,69 @@ header {
       background: $headerBgColor;
       border-radius: $standarBorderRadius;
       border: 1px solid #5f6166;
+      color: #5f6166;
       height: 30px;
       width: 200;
       margin: 15px 20px 15px 10px;
+      padding: 0 10px;
       border-collapse: collapse;
       background: url($imagesFolder+'bg_search.svg') center right no-repeat;
     }
     #user {
       height: 30px;
       margin: 15px 0;
-      @extend %button;
+      cursor: pointer;
 
       #profilePicture {
         border-radius: $standarBorderRadius;
         overflow: hidden;
         padding-right: 23px;
         background: url($imagesFolder+'bg_dropdown.svg') 38px center no-repeat;
+      }
+
+      #menu {
+        display: block;
+        position: absolute;
+        background: #FFF;
+        border-radius: $standarBorderRadius;
+        padding: 0;
+        top: 54px;
+
+        >li {
+          list-style-type: none;
+          color: #70767f;
+          font-family: $defaultFont;
+          font-size: 12px;
+          line-height: 30px;
+          height: 30px;
+          padding: 0 15px;
+          border-bottom: 1px solid #dee1e5;
+          position: relative;
+          z-index: 111;
+
+          &:last-of-type {
+            border-bottom: none;
+            border-radius: 0 0 $standarBorderRadius $standarBorderRadius;
+          }
+
+          &:hover {
+            background: rgba(0,204,153,.5);
+          }
+        }
+
+        &:before {
+          display: block;
+          content: '';
+          width: 8px;
+          height: 8px;
+          background: #FFF;
+          position: absolute;
+          top: -4px;
+          right: 10px;
+          transform: rotate(45deg);
+          z-index: 110;
+        }
+
       }
     }
   }

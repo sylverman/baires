@@ -1,6 +1,7 @@
-header #xtras #addPost, header #xtras #user {
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+header #xtras #addPost {
   cursor: pointer; }
-  header #xtras #addPost:hover, header #xtras #user:hover {
+  header #xtras #addPost:hover {
     background: rgba(255, 255, 255, 0.1); }
 
 header {
@@ -19,18 +20,55 @@ header {
       background: #262728;
       border-radius: 3px;
       border: 1px solid #5f6166;
+      color: #5f6166;
       height: 30px;
       width: 200;
       margin: 15px 20px 15px 10px;
+      padding: 0 10px;
       border-collapse: collapse;
       background: url("../images/bg_search.svg") center right no-repeat; }
     header #xtras #user {
       height: 30px;
-      margin: 15px 0; }
+      margin: 15px 0;
+      cursor: pointer; }
       header #xtras #user #profilePicture {
         border-radius: 3px;
         overflow: hidden;
         padding-right: 23px;
         background: url("../images/bg_dropdown.svg") 38px center no-repeat; }
+      header #xtras #user #menu {
+        display: block;
+        position: absolute;
+        background: #FFF;
+        border-radius: 3px;
+        padding: 0;
+        top: 54px; }
+        header #xtras #user #menu > li {
+          list-style-type: none;
+          color: #70767f;
+          font-family: "Open Sans", sans-serif;
+          font-size: 12px;
+          line-height: 30px;
+          height: 30px;
+          padding: 0 15px;
+          border-bottom: 1px solid #dee1e5;
+          position: relative;
+          z-index: 111; }
+          header #xtras #user #menu > li:last-of-type {
+            border-bottom: none;
+            border-radius: 0 0 3px 3px; }
+          header #xtras #user #menu > li:hover {
+            background: rgba(0, 204, 153, 0.5); }
+        header #xtras #user #menu:before {
+          display: block;
+          content: '';
+          width: 8px;
+          height: 8px;
+          background: #FFF;
+          position: absolute;
+          top: -4px;
+          right: 10px;
+          transform: rotate(45deg);
+          z-index: 110; }
 
 /*# sourceMappingURL=styles.css.map */
