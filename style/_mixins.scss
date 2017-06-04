@@ -1,0 +1,14 @@
+@mixin placeholderColor($plColor){
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $plColor;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $plColor;
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $plColor;
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $plColor;
+  }
+}
