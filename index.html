@@ -7,7 +7,16 @@
   <meta name="author" content="Daniel Vilchis">
 
   <!-- Bootstrap Library -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- jQuery Library-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Modal -->
+  <link rel="stylesheet" href="lib/jquery-modal-master/jquery.modal.min.css">
+  <script src="lib/jquery-modal-master/jquery.modal.min.js"></script>
+
+  <link rel="stylesheet" href="style/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style/styles.css">
 
   <!--[if lt IE 9]>
@@ -16,18 +25,41 @@
 </head>
 
 <body>
+  <div class="modals">
+    <div id="createUser">
+      <div class="title"><p>Create new user</p></div>
+      <form class="actionForm">
+        <p>First name <input type="text" id="newUserFirstName"></p>
+        <p>Last name <input type="text" id="newUserLastName"></p>
+        <p>Email name <input type="text" id="newUserEmail"></p>
+      </form>
+      <div class="buttons">
+        <span id="emailValidationMessage"></span>
+        <button disabled="disabled" id="newUserSubmit">Submit</button>
+      </div>
+    </div>
+    <div id="createPost">
+      <div class="title"><p>Create new message</p></div>
+      <textarea></textarea>
+      <div class="buttons">
+        <button>Post</button>
+        <a href="#"><span class="addPhoto">Add Photo</span></a>
+        <a href="#"><span class="addVideo">Add Video</span></a>
+      </div>
+    </div>
+  </div>
   <header>
     <div class="container">
       <div id="xtras">
           <div>
-            <img src="images/addPost_btn.svg" id="addPost" alt="Add Post">
+            <a href="#createPost" rel="modal:open"><img src="style/assets/addPost_btn.svg" id="addPost" alt="Add Post"></a>
           </div>
           <div>
               <input type="text" id="search">
           </div>
           <div id="user">
             <div id="profilePicture">
-              <img src="images/sample_profile_picture.jpg" alt="Profile picture">
+              <img src="style/assets/sample_profile_picture.jpg" alt="Profile picture" id="createUserBtn">
             </div>
             <ul id="menu">
               <li>Profile</li>
@@ -38,11 +70,165 @@
           </div>
         </div>
         <div id="logo">
-          <img src="images/logo.svg" alt="Logo">
+          <img src="style/assets/logo.svg" alt="Logo">
         </div>
       </div>
     </div>
   </header>
-    <!--<script src="js/scripts.js"></script>-->
+  <div class="cover">
+    <div class="container">
+      <div id="postBox">
+        <textarea id="publishPost" placeholder="What's on your mind?" maxlength="200"></textarea>
+        <a href="#"><div id="addPhoto">Add Photo</div></a>
+        <a href="#"><div id="addVideo">Add Video</div></a>
+      </div>
+      <nav id="viewNav">
+        <ul id="changeView">
+          <li class="selected"><i class="fa fa-bars" aria-hidden="true"></i></li>
+          <li><i class="fa fa-th-large" aria-hidden="true"></i></li>
+        </ul>
+        <ul id="filterBy">
+          <li class="selected">All post</li>
+          <li>Photos</li>
+          <li>Videos</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <section class="list" id="mainContent">
+    <article data-media="text">
+      <summary>
+        <div class="userPhoto">
+          <img src="images/sample_user2.jpg" alt="Profile picture">
+        </div>
+        <div class="content">
+          <header>
+            <h3>Sam Soffes</h3>
+            <div class="socialActions">
+              <span class="publishTime">3m</span>
+              <a><span class="likeBtn"></span></a>
+              <a><span class="shareBtn"></span></a>
+            </div>
+          </header>
+          <p>
+            How to Get Inspired: the Right Way - Designmodo <a>bit.ly/1hqgbQA</a> Good stuff frotm <a>@designmodo</a>!
+          </p>
+          <span class="expand"></span>
+        </div>
+      </summary>
+    </article>
+    <article data-media="photo">
+      <summary>
+        <div class="userPhoto">
+          <img src="images/sample_user3.jpg" alt="Profile picture">
+        </div>
+        <div class="content">
+          <header>
+            <h3>Meg Robichaud</h3>
+            <div class="socialActions">
+              <span class="publishTime">25m</span>
+              <a><span class="likeBtn"></span></a>
+              <a><span class="shareBtn"></span></a>
+            </div>
+          </header>
+          <p>
+            My view this morning is simply beautiful...<br>
+            <a>instagram.com/p/mV0PtUrHRwQ/</a>
+          </p>
+        </div>
+      </summary>
+      <figure>
+        <img src="images/sample_picture1.jpg" alt="Photo">
+      </figure>
+    </article>
+    <article data-media="text">
+      <summary>
+        <div class="userPhoto">
+          <img src="images/sample_user4.jpg" alt="Profile picture">
+        </div>
+        <div class="content">
+          <header>
+            <h3>Kerem Suer</h3>
+            <div class="socialActions">
+              <span class="publishTime">50m</span>
+              <a><span class="likeBtn"></span></a>
+              <a><span class="shareBtn"></span></a>
+            </div>
+          </header>
+          <p>
+            8 Apps to Turn Your Pipe Dreams Into Prototypes<br>
+            <a>on.mash.to/1oubyu8</a>
+          </p>
+        </div>
+      </summary>
+    </article>
+    <article data-media="text">
+      <summary>
+        <div class="userPhoto">
+          <img src="images/sample_user5.jpg" alt="Profile picture">
+        </div>
+        <div class="content">
+          <header>
+            <h3>Liang Shi</h3>
+            <div class="socialActions">
+              <span class="publishTime">1h</span>
+              <a><span class="likeBtn"></span></a>
+              <a><span class="shareBtn"></span></a>
+            </div>
+          </header>
+          <p>
+            How to get animations out of your head. <a>http://bit.ly/1q7BngO</a><br>
+            Funny and useful
+          </p>
+        </div>
+      </summary>
+    </article>
+    <article data-media="video">
+      <summary>
+        <div class="userPhoto">
+          <img src="images/sample_user6.jpg" alt="Profile picture">
+        </div>
+        <div class="content">
+          <header>
+            <h3>Vitor Leal</h3>
+            <div class="socialActions">
+              <span class="publishTime">1h</span>
+              <a><span class="likeBtn"></span></a>
+              <a><span class="shareBtn"></span></a>
+            </div>
+          </header>
+          <p>
+            You have to see this bike. It will make your daily commute a absolute joy ride!
+            <a>vimeo.com/p/mV0PUrHRwQ/</a>
+          </p>
+        </div>
+      </summary>
+      <figure>
+        <img src="images/sample_video1.jpg" alt="Photo">
+      </figure>
+    </article>
+    <article data-media="text">
+      <summary>
+        <div class="userPhoto">
+          <img src="images/sample_user6.jpg" alt="Profile picture">
+        </div>
+        <div class="content">
+          <header>
+            <h3>Pallavi Gupta</h3>
+            <div class="socialActions">
+              <span class="publishTime">1h</span>
+              <a><span class="likeBtn"></span></a>
+              <a><span class="shareBtn"></span></a>
+            </div>
+          </header>
+          <p>
+            Need some reading? 11 free eboks for designers | Creative Bloq
+            <a>bit.ly/1lE5QDM</a> via <a>@netmag</a>
+          </p>
+        </div>
+      </summary>
+    </article>
+  </section>
+  <script src="scripts/script.js"></script>
 </body>
 </html>

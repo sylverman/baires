@@ -1,7 +1,11 @@
 @import "_variables.scss";
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import "_mixins.scss";
+@import "_modal.fix.scss";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
 
 body {
+  font-family: $defaultFont;
+  -webkit-font-smoothing: antialiased;
 }
 
 %button {
@@ -10,13 +14,22 @@ body {
     background: rgba(255,255,255,.1);
   }
 }
+%removeGlow {
+  outline: none;
+}
 
-header {
+body > header {
   background: $headerBgColor;
   height: 60px;
-  position: fixed;
+  position: relative;
+  z-index: $headerLayer;
   left: 0;
   right: 0;
+
+  .container {
+    /*width: 1320px;*/
+    margin: auto;
+  }
 
   #logo {
     float: left;
@@ -41,11 +54,13 @@ header {
       padding: 0 10px;
       border-collapse: collapse;
       background: url($imagesFolder+'bg_search.svg') center right no-repeat;
+      @extend %removeGlow;
     }
     #user {
       height: 30px;
       margin: 15px 0;
       cursor: pointer;
+      position: relative;
 
       #profilePicture {
         border-radius: $standarBorderRadius;
@@ -55,11 +70,12 @@ header {
       }
 
       #menu {
-        display: block;
+        display: none;
         position: absolute;
         background: #FFF;
         border-radius: $standarBorderRadius;
         padding: 0;
+        right: -2px;
         top: 54px;
 
         >li {
@@ -69,10 +85,10 @@ header {
           font-size: 12px;
           line-height: 30px;
           height: 30px;
-          padding: 0 15px;
+          padding: 0 30px 0 15px;
           border-bottom: 1px solid #dee1e5;
           position: relative;
-          z-index: 111;
+          z-index: $headerLayer+2;
 
           &:last-of-type {
             border-bottom: none;
@@ -94,10 +110,384 @@ header {
           top: -4px;
           right: 10px;
           transform: rotate(45deg);
-          z-index: 110;
+          z-index: $headerLayer+1;
         }
 
       }
     }
   }
+}
+
+.cover {
+  height: 420px;
+  position: relative;
+  left: 0;
+  right: 0;
+  background: url($imagesFolder+'bg_cover.jpg') center center;
+  background-size: cover;
+
+  .container {
+      width: 575px;
+      height: 420px;
+      margin: auto;
+      position: relative;
+      padding: 0;
+
+      #postBox {
+        border-radius: $standarBorderRadius;
+        width: 100%;
+        height: 156px;
+        border-collapse: collapse;
+        padding: 30px;
+        background: rgba(0,178,134,.7);
+        margin-top: 120px;
+        position: relative;
+        font-family: $defaultFont;
+
+        textarea {
+          width: 100%;
+          background: none;
+          border: none;
+          opacity: .5;
+          color: #FFF;
+          font-family: $defaultFont;
+          font-weight: 100;
+          font-size: 30px;
+          height: 36px;
+          margin-top: 10px;
+          @include transition($transitionDefaultDuration);
+
+          &:focus {
+            opacity: .9;
+            @extend %removeGlow;
+            height: 72px;
+            line-height: 34px;
+            margin-top: 0;
+          }
+
+          @include placeholderColor(#FFF);
+        }
+
+        >div, a div{
+          color: #FFF;
+          opacity: .5;
+          cursor: pointer;
+          @include transition($transitionDefaultDuration);
+
+          &:hover {
+            opacity: .9;
+          }
+        }
+
+        #addPhoto {
+          position: absolute;
+          left: 30px;
+          bottom: 30px;
+          padding-left: 30px;
+          background: url($imagesFolder+'bg_photo.svg') left center no-repeat;
+        }
+
+        #addVideo {
+          position: absolute;
+          left: 170px;
+          bottom: 30px;
+          padding-left: 30px;
+          background: url($imagesFolder+'bg_video.svg') left center no-repeat;
+        }
+      }
+
+      #viewNav {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: $viewNavHeight;
+
+        ul {
+          padding: 0;
+
+          li {
+            list-style-type: none;
+            float: left;
+            height: $viewNavHeight;
+            line-height: $viewNavHeight;
+            color: #bec3cc;
+            cursor: pointer;
+          }
+
+          &:first-of-type{
+              float: right;
+
+              li{
+                width: 26px;
+                cursor: pointer;
+
+                i {
+                  color: #bec3cc;
+                }
+
+                &.selected {
+                  i {
+                      color: #FFF;
+                  }
+                }
+              }
+          }
+
+          &:last-of-type {
+            float: left;
+
+            li {
+              text-transform: uppercase;
+              padding: 0 15px;
+              font-family: inherit;
+              font-weight: 600;
+              letter-spacing: 1px;
+              font-size: 12px;
+
+              &.selected, &:hover {
+                color: #FFF;
+                border-bottom: 4px solid #00cc99;
+              }
+
+            }
+          }
+        }
+      }
+  }
+
+}
+#mainContent.list{
+  width: 575px;
+  margin: 50px auto;
+
+  article {
+    border: 1px solid #dee1e5;
+    border-radius: $standarBorderRadius;
+    margin-top: 25px;
+    overflow: hidden;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    summary {
+      padding: 25px;
+    }
+
+    .userPhoto {
+      width: 40px;
+      height: 40px;
+      border-radius: $standarBorderRadius;
+      overflow: hidden;
+      float: left;
+
+      img {
+        width: 40px;
+      }
+    }
+
+    .content {
+      padding-left: 60px;
+
+      header {
+        height: 16px;
+        margin-bottom: 15px;
+
+        span {
+          float: right;
+          margin-left: 15px;
+        }
+
+        .publishTime {
+          color: $textLinks;
+          font-size: 14px;
+        }
+        .likeBtn {
+          width: 20px;
+          height: 20px;
+          background: url($imagesFolder+'bg_like_btn.svg') center center no-repeat;
+        }
+        .shareBtn {
+          width: 20px;
+          height: 20px;
+          background: url($imagesFolder+'bg_share_btn.svg') center center no-repeat;
+        }
+      }
+
+      h3 {
+        color: #3f454d;
+        font-size: 16px;
+        line-height: 16px;
+        margin: 0;
+        float: left;
+      }
+
+      p {
+        color: #70767f;
+        font-size: 15px;
+        margin-bottom: 5px;
+      }
+
+      a {
+        color: $textLinks;
+        cursor: pointer;
+      }
+
+      .expand {
+        cursor: pointer;
+        padding-right: 15px;
+        background: url(assets/bg_dropdown2.svg) right center no-repeat;
+
+        &:before {
+            content: "Expand";
+            color: $textLinks;
+            font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+#mainContent.mosaic {
+  width: 1174px;
+  margin: 25px auto;
+  column-count: 3;
+  column-gap: 0;
+
+  article {
+    border: 1px solid #dee1e5;
+    border-radius: $standarBorderRadius;
+    margin: 0 13px 25px 13px;
+    padding-bottom: 55px;
+    position: relative;
+    overflow: hidden;
+    border-collapse: collapse;
+    min-width: 30%;
+    break-inside: avoid-column;
+
+    summary {
+      padding: 25px;
+    }
+
+    .userPhoto {
+      width: 40px;
+      height: 40px;
+      border-radius: $standarBorderRadius;
+      overflow: hidden;
+      float: left;
+
+      img {
+        width: 40px;
+      }
+    }
+
+    .content {
+      padding-left: 60px;
+
+      header {
+        height: 16px;
+        margin-bottom: 15px;
+
+        span {
+          float: right;
+          margin-left: 15px;
+        }
+
+        .socialActions {
+          position: absolute;
+          bottom: 18px;
+          right: 20px;
+        }
+
+        .publishTime {
+          color: $textLinks;
+          font-size: 14px;
+        }
+        .likeBtn {
+          width: 20px;
+          height: 20px;
+          background: url($imagesFolder+'bg_like_btn.svg') center center no-repeat;
+        }
+        .shareBtn {
+          width: 20px;
+          height: 20px;
+          background: url($imagesFolder+'bg_share_btn.svg') center center no-repeat;
+        }
+      }
+
+      h3 {
+        color: #3f454d;
+        font-size: 16px;
+        line-height: 16px;
+        margin: 0;
+        float: left;
+      }
+
+      p {
+        color: #70767f;
+        font-size: 15px;
+        margin-bottom: 5px;
+      }
+
+      a {
+        color: $textLinks;
+        cursor: pointer;
+      }
+
+      .expand {
+        cursor: pointer;
+        padding-right: 15px;
+        background: url(assets/bg_dropdown2.svg) right center no-repeat;
+
+        &:before {
+            content: "Expand";
+            color: $textLinks;
+            font-size: 14px;
+        }
+      }
+    }
+
+    figure {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+button {
+  background: #00b286;
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: $standarBorderRadius;
+  border: none;
+  height: 35px;
+  min-width: 75px;
+
+  &:disabled {
+    opacity: .5;
+    @include transition($transitionDefaultDuration);
+  }
+}
+.actionForm {
+  input[type=text] {
+    border: none;
+    border-radius: $standarBorderRadius;
+    width: 415px;
+    height: 36px;
+    line-height: 36px;
+    float: right;
+    display: inline-block;
+  }
+
+  p {
+    line-height: 36px;
+  }
+}
+
+.modals {
+  display: none;
+
 }

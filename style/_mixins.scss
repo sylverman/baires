@@ -12,3 +12,8 @@
     color: $plColor;
   }
 }
+
+@mixin transition($transValues){
+  -webkit-transition: $transValues; /* Safari */
+  transition: $transValues;
+}

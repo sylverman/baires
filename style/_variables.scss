@@ -2,5 +2,11 @@ $headerBgColor: #262728;
 $standarBorderRadius: 3px;
 $defaultTextColor: #5f6166;
 $defaultFont: 'Open Sans', sans-serif;
+$viewNavHeight: 56px;
+$textLinks: #bec3cc;
+$transitionDefaultDuration: 300ms;
 
-$imagesFolder: '../images/';
+$coverLayer: 100;
+$headerLayer: $coverLayer+100;
+
+$imagesFolder: 'assets/';
