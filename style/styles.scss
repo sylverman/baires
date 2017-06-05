@@ -262,6 +262,7 @@ body > header {
     @include transition($transitionDefaultDuration);
   }
 }
+
 #mainContent.list{
   width: 575px;
   margin: 50px auto;
@@ -489,6 +490,36 @@ body > header {
   }
 }
 
+footer {
+  border-top: 1px solid #dee1e5;
+
+  ul {
+    width: 450px;
+    height: 72px;
+    padding: 0;
+    display: block;
+    margin: auto;
+
+    li {
+      font-size: 11px;
+      float: left;
+      line-height: 72px;
+      padding: 0 15px;
+      list-style-type: none;
+      text-transform: uppercase;
+
+      a {
+        color: #00b286;
+        cursor: pointer;
+
+        &:hover {
+          color: #00b286;
+        }
+      }
+    }
+  }
+}
+
 button {
   background: #00b286;
   color: #FFF;
@@ -504,6 +535,7 @@ button {
     @include transition($transitionDefaultDuration);
   }
 }
+
 .actionForm {
   input[type=text] {
     border: none;

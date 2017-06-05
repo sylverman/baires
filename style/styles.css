@@ -402,6 +402,27 @@ body > header {
   #mainContent.mosaic .loadMore {
     display: none; }
 
+footer {
+  border-top: 1px solid #dee1e5; }
+  footer ul {
+    width: 450px;
+    height: 72px;
+    padding: 0;
+    display: block;
+    margin: auto; }
+    footer ul li {
+      font-size: 11px;
+      float: left;
+      line-height: 72px;
+      padding: 0 15px;
+      list-style-type: none;
+      text-transform: uppercase; }
+      footer ul li a {
+        color: #00b286;
+        cursor: pointer; }
+        footer ul li a:hover {
+          color: #00b286; }
+
 button {
   background: #00b286;
   color: #FFF;
