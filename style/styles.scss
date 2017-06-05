@@ -257,6 +257,11 @@ body > header {
   }
 
 }
+#mainContent {
+  article {
+    @include transition($transitionDefaultDuration);
+  }
+}
 #mainContent.list{
   width: 575px;
   margin: 50px auto;
@@ -345,6 +350,30 @@ body > header {
             font-size: 14px;
         }
       }
+    }
+
+    figure {
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .loadMore {
+    height: 120px;
+    width: 120px;
+    margin: 30px auto;
+    cursor: pointer;
+    border-radius: 50%;
+    color: $textLinks;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 120px;
+    @include transition($transitionDefaultDuration);
+
+    &:hover {
+      background: #e6e8ec;
     }
   }
 }
@@ -453,6 +482,10 @@ body > header {
         width: 100%;
       }
     }
+  }
+
+  .loadMore {
+    display: none;
   }
 }
 

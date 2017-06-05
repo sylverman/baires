@@ -244,6 +244,11 @@ body > header {
               color: #FFF;
               border-bottom: 4px solid #00cc99; }
 
+#mainContent article {
+  -webkit-transition: 300ms;
+  /* Safari */
+  transition: 300ms; }
+
 #mainContent.list {
   width: 575px;
   margin: 50px auto; }
@@ -304,6 +309,24 @@ body > header {
           content: "Expand";
           color: #bec3cc;
           font-size: 14px; }
+    #mainContent.list article figure img {
+      width: 100%; }
+  #mainContent.list .loadMore {
+    height: 120px;
+    width: 120px;
+    margin: 30px auto;
+    cursor: pointer;
+    border-radius: 50%;
+    color: #bec3cc;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 120px;
+    -webkit-transition: 300ms;
+    /* Safari */
+    transition: 300ms; }
+    #mainContent.list .loadMore:hover {
+      background: #e6e8ec; }
 
 #mainContent.mosaic {
   width: 1174px;
@@ -376,6 +399,8 @@ body > header {
           font-size: 14px; }
     #mainContent.mosaic article figure img {
       width: 100%; }
+  #mainContent.mosaic .loadMore {
+    display: none; }
 
 button {
   background: #00b286;

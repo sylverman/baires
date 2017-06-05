@@ -1,9 +1,19 @@
-$('#profilePicture').click(function(){
+$('#profilePicture').click(function(e){
   $('#menu').toggle('fast');
+  e.stopPropagation();
+});
+$('body').click(function() {
+   $('#menu').hide('fast');
 });
 $('#filterBy li').click(function(){
   $('#filterBy li').removeClass('selected');
   $(this).addClass('selected');
+  $('#mainContent article').fadeOut();
+  if($(this).attr('data-media-filter') == 'all'){
+    $('#mainContent article').fadeIn();
+  } else {
+    $('#mainContent article[data-media='+$(this).attr('data-media-filter')+']').fadeIn();
+  }
 });
 $('#changeView li').click(function(){
   if(this.className != 'selected') {
