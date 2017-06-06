@@ -1,0 +1,9 @@
+%button {
+  cursor: pointer;
+  &:hover {
+    background: rgba(255,255,255,.1);
+  }
+}
+%removeGlow {
+  outline: none;
+}

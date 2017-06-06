@@ -17,3 +17,17 @@
   -webkit-transition: $transValues; /* Safari */
   transition: $transValues;
 }
+
+@mixin mediaQuery($minArg, $maxArg:0){
+
+  @if $maxArg == 0 {
+    @media screen and (min-width: #{$minArg}) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: #{$minArg}) and (max-width: #{($maxArg)-1}) {
+      @content;
+    }
+  }
+
+}

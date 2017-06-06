@@ -10,3 +10,10 @@ $coverLayer: 100;
 $headerLayer: $coverLayer+100;
 
 $imagesFolder: 'assets/';
+
+$responsive: (
+  bigDesktop: 1200px,
+  smallDesktop: 980px,
+  tablet: 768px,
+  smartphone: 480px
+);

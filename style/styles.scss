@@ -1,21 +1,13 @@
-@import "_variables.scss";
-@import "_mixins.scss";
-@import "_modal.fix.scss";
+@import "_variables";
+@import "_mixins";
+@import "_shared";
+@import "_global";
+@import "_modal.fix";
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
 
 body {
   font-family: $defaultFont;
   -webkit-font-smoothing: antialiased;
-}
-
-%button {
-  cursor: pointer;
-  &:hover {
-    background: rgba(255,255,255,.1);
-  }
-}
-%removeGlow {
-  outline: none;
 }
 
 body > header {
@@ -78,6 +70,10 @@ body > header {
         right: -2px;
         top: 54px;
 
+        @include mediaQuery(0px, map-get($responsive, smartphone)){
+            zoom: 160%;
+        }
+
         >li {
           list-style-type: none;
           color: #70767f;
@@ -116,6 +112,12 @@ body > header {
       }
     }
   }
+  @include mediaQuery(0px,map-get($responsive, smartphone)){
+    position: fixed;
+    #search {
+      display: none;
+    }
+  }
 }
 
 .cover {
@@ -126,12 +128,21 @@ body > header {
   background: url($imagesFolder+'bg_cover.jpg') center center;
   background-size: cover;
 
+  @include mediaQuery(0px, map-get($responsive, smartphone)){
+      height: 320px;
+  }
+
   .container {
       width: 575px;
       height: 420px;
       margin: auto;
       position: relative;
       padding: 0;
+
+      @include mediaQuery(0px, map-get($responsive, smartphone)){
+        width: 100%;
+        height: 320px;
+      }
 
       #postBox {
         border-radius: $standarBorderRadius;
@@ -143,6 +154,11 @@ body > header {
         margin-top: 120px;
         position: relative;
         font-family: $defaultFont;
+
+        @include mediaQuery(0px, map-get($responsive, smartphone)){
+            margin-top: 60px;
+            height: 200px;
+        }
 
         textarea {
           width: 100%;
@@ -163,6 +179,17 @@ body > header {
             height: 72px;
             line-height: 34px;
             margin-top: 0;
+          }
+
+          @include mediaQuery(0px, map-get($responsive, smartphone)){
+              height: 100px;
+              margin: 0;
+              font-size: 28px;
+
+              &:focus {
+                height: 100px;
+                font-size: 26px;
+              }
           }
 
           @include placeholderColor(#FFF);
@@ -203,6 +230,10 @@ body > header {
         right: 0;
         height: $viewNavHeight;
 
+        @include mediaQuery(0px, map-get($responsive, smartphone)){
+          zoom: 110%;
+        }
+
         ul {
           padding: 0;
 
@@ -215,23 +246,27 @@ body > header {
             cursor: pointer;
           }
 
-          &:first-of-type{
-              float: right;
+          &:first-of-type {
 
-              li{
-                width: 26px;
-                cursor: pointer;
+            float: right;
 
+            li{
+              width: 26px;
+              cursor: pointer;
+
+              i {
+                color: #bec3cc;
+              }
+
+              &.selected {
                 i {
-                  color: #bec3cc;
-                }
-
-                &.selected {
-                  i {
-                      color: #FFF;
-                  }
+                    color: #FFF;
                 }
               }
+            }
+            @include mediaQuery(0px, map-get($responsive, tablet)){
+              display: none;
+            }
           }
 
           &:last-of-type {
@@ -257,6 +292,7 @@ body > header {
   }
 
 }
+
 #mainContent {
   article {
     @include transition($transitionDefaultDuration);
@@ -267,11 +303,22 @@ body > header {
   width: 575px;
   margin: 50px auto;
 
+  @include mediaQuery(0px, map-get($responsive, smartphone)){
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 10px;
+  }
+
   article {
     border: 1px solid #dee1e5;
     border-radius: $standarBorderRadius;
     margin-top: 25px;
     overflow: hidden;
+    @include mediaQuery(0px, map-get($responsive, tablet)){
+      margin-top: 10px;
+      zoom: 85%;
+    }
 
     &:first-of-type {
       margin-top: 0;
@@ -380,7 +427,9 @@ body > header {
 }
 
 #mainContent.mosaic {
-  width: 1174px;
+  @include mediaQuery(map-get($responsive, bigDesktop)) {
+      width: 1174px;
+  }
   margin: 25px auto;
   column-count: 3;
   column-gap: 0;
@@ -488,10 +537,23 @@ body > header {
   .loadMore {
     display: none;
   }
+
+  @include mediaQuery(map-get($responsive, tablet), map-get($responsive, smallDesktop)) {
+    width: 100%;
+    zoom: 80%;
+  }
+  @include mediaQuery(map-get($responsive, smallDesktop), map-get($responsive, bigDesktop)) {
+    width: 100%;
+    zoom: 90%;
+    max-width: (map-get($responsive, bigDesktop))-1;
+  }
 }
 
 footer {
   border-top: 1px solid #dee1e5;
+  @include mediaQuery(0px, map-get($responsive, smartphone)) {
+
+  }
 
   ul {
     width: 450px;
@@ -499,6 +561,11 @@ footer {
     padding: 0;
     display: block;
     margin: auto;
+    @include mediaQuery(0px, map-get($responsive, smartphone)) {
+      width: 100%;
+      min-height: 20px;
+      margin: 20px 0;
+    }
 
     li {
       font-size: 11px;
@@ -507,6 +574,12 @@ footer {
       padding: 0 15px;
       list-style-type: none;
       text-transform: uppercase;
+
+      @include mediaQuery(0px, map-get($responsive, smartphone)) {
+        padding: 0 7px;
+        line-height: 20px;
+        height: 20px;
+      }
 
       a {
         color: #00b286;
@@ -518,41 +591,4 @@ footer {
       }
     }
   }
-}
-
-button {
-  background: #00b286;
-  color: #FFF;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: $standarBorderRadius;
-  border: none;
-  height: 35px;
-  min-width: 75px;
-
-  &:disabled {
-    opacity: .5;
-    @include transition($transitionDefaultDuration);
-  }
-}
-
-.actionForm {
-  input[type=text] {
-    border: none;
-    border-radius: $standarBorderRadius;
-    width: 415px;
-    height: 36px;
-    line-height: 36px;
-    float: right;
-    display: inline-block;
-  }
-
-  p {
-    line-height: 36px;
-  }
-}
-
-.modals {
-  display: none;
-
 }

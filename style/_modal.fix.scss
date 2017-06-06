@@ -6,8 +6,16 @@
   color: #70767f !important;
   font-size: 16px !important;
   padding: 17px 24px !important;
-  min-width: 575px !important;
   overflow: visible;
+
+  @include mediaQuery(map-get($responsive, smartphone)) {
+    min-width: 575px !important;
+  }
+
+  @include mediaQuery(0px, map-get($responsive, smartphone)) {
+    width: 90% !important;
+    height: auto !important;
+  }
 
   .title {
     margin-bottom: 15px !important;
@@ -25,6 +33,13 @@
       color: #00b286 !important;
       padding: 0 !important;
     }
+
+    span {
+      @include mediaQuery(0px, map-get($responsive, smartphone)) {
+        width: 10px;
+        line-height: 18px !important;
+      }
+    }
   }
 
   textarea {
@@ -32,6 +47,10 @@
     height: 90px;
     border-radius: $standarBorderRadius;
     border: none;
+
+    @include mediaQuery(0px, map-get($responsive, smartphone)) {
+      height: 200px;
+    }
   }
 
   button {
@@ -65,4 +84,31 @@
   top: -30px !important;
   right: -32px !important;
   background: url($imagesFolder+'bg_close_btn.svg') center center no-repeat !important;
+}
+
+.modals {
+  display: none;
+}
+
+.actionForm {
+  input[type=text] {
+    border: none;
+    border-radius: $standarBorderRadius;
+    height: 36px;
+    line-height: 36px;
+    display: inline-block;
+
+    @include mediaQuery(map-get($responsive, smartphone)) {
+      float: right;
+      width: 415px;
+    }
+    @include mediaQuery(0px, map-get($responsive, smartphone)) {
+      width: 100% !important;
+      float: none;
+    }
+  }
+
+  p {
+    line-height: 36px;
+  }
 }
