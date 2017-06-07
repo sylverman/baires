@@ -12,7 +12,7 @@ Make sure you have already installed node.js and npm.
 3. Type and enter the following command in your terminal.
 
 ```shell
-npm grunt
+grunt
 ```
 
 4. Then run the index.html file. No additional cofigurations are required.
