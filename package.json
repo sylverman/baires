@@ -1,0 +1,28 @@
+{
+  "name": "baires",
+  "version": "1.0.0",
+  "description": "Just a code challange",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sylverman/baires.git"
+  },
+  "author": "Daniel Vilchis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sylverman/baires/issues"
+  },
+  "homepage": "https://github.com/sylverman/baires#readme",
+  "dependencies": {
+    "grunt": "^1.0.1"
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^3.0.1",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}
